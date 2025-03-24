@@ -96,8 +96,6 @@ export const handlePaymentCallback = async (
       return;
     }
 
-    logger.info("Request Body: ", req.body);
-
     const { customer } = invoiceDetails.data;
     const email = customer.email;
     const phoneNumber = customer.phoneNumber;
