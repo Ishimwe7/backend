@@ -10,29 +10,41 @@ import emailService from "../services/email.service";
 export const createExamAttempt = async (req: AuthRequest, res: Response) => {
   try {
     const { score } = req.body;
-    const user_id = req.user?.id; 
+    const user_id = req.user?.id;
 
     if (!user_id) {
-       res.status(401).json({ error: "Unauthorized. Please Login To Continue" });
-       return;
+      res.status(401).json({ error: "Unauthorized. Please Login To Continue" });
+      return;
     }
     const userExists = await User.findById(user_id);
-          if (!userExists) {
-            res.status(404).json({ error: "User not found" });
-            return;
-          }
+    if (!userExists) {
+      res.status(404).json({ error: "User not found" });
+      return;
+    }
     const attempt = new ExamAttempt({
       user_id: new mongoose.Types.ObjectId(user_id),
       attempt_date: new Date(),
       score,
     });
-
-    await attempt.save();
-    smsService.sendSMS(userExists.phone_number,`Hello ${userExists.names} wabonye amanota ${score}/20 mu isuzuma wakoze. Komeza ukore kenshi witegura ikizamini cya nyuma !`)
-    if(userExists.email){
-      emailService.sendEmail({to:userExists.email,subject:"Amanota y'ikizamini",html:`Hello ${userExists.names} wabonye amanota ${score}/20 mu isuzuma wakoze. Komeza ukore kenshi witegura ikizamini cya nyuma !`})
+    if (userExists.hasFreeTrial == true) {
+      userExists.hasFreeTrial = false;
+      await userExists.save();
     }
-    res.status(201).json({ message: "Exam attempt recorded successfully", attempt });
+    await attempt.save();
+    smsService.sendSMS(
+      userExists.phone_number,
+      `Hello ${userExists.names} wabonye amanota ${score}/20 mu isuzuma wakoze. Komeza ukore kenshi witegura ikizamini cya nyuma !`
+    );
+    if (userExists.email) {
+      emailService.sendEmail({
+        to: userExists.email,
+        subject: "Amanota y'ikizamini",
+        html: `Hello ${userExists.names} wabonye amanota ${score}/20 mu isuzuma wakoze. Komeza ukore kenshi witegura ikizamini cya nyuma !`,
+      });
+    }
+    res
+      .status(201)
+      .json({ message: "Exam attempt recorded successfully", attempt });
   } catch (error) {
     console.error("❌ Error in createExamAttempt:", error);
     res.status(500).json({ error: "Internal Server Error" });
@@ -42,7 +54,10 @@ export const createExamAttempt = async (req: AuthRequest, res: Response) => {
 // ✅ Get all exam attempts (admin use)
 export const getAllAttempts = async (req: AuthRequest, res: Response) => {
   try {
-    const attempts = await ExamAttempt.find().populate("user_id", "names email");
+    const attempts = await ExamAttempt.find().populate(
+      "user_id",
+      "names email"
+    );
     res.status(200).json(attempts);
   } catch (error) {
     console.error("❌ Error in getAllAttempts:", error);
@@ -53,21 +68,24 @@ export const getAllAttempts = async (req: AuthRequest, res: Response) => {
 // ✅ Get attempts by user ID (for admin)
 export const getAttemptsByUserId = async (req: AuthRequest, res: Response) => {
   try {
-    const userId = req.user?.id; 
-    if(userId!==req.params.userId){
-      res.status(400).json({ error: "The user's ID in params is different from the one of logged in user !" });
+    const userId = req.user?.id;
+    if (userId !== req.params.userId) {
+      res.status(400).json({
+        error:
+          "The user's ID in params is different from the one of logged in user !",
+      });
       return;
     }
     const attempts = await ExamAttempt.find({ user_id: userId });
 
     if (!attempts || attempts.length === 0) {
-        res.status(404).json({ message: "No exam attempts found for this user" });
-        return;
-     }
+      res.status(404).json({ message: "No exam attempts found for this user" });
+      return;
+    }
 
     if (!attempts || attempts.length === 0) {
-       res.status(404).json({ message: "No exam attempts found for this user" });
-       return;
+      res.status(404).json({ message: "No exam attempts found for this user" });
+      return;
     }
 
     res.status(200).json(attempts);
@@ -81,14 +99,17 @@ export const getAttemptsByUserId = async (req: AuthRequest, res: Response) => {
 export const getUserExamStats = async (req: AuthRequest, res: Response) => {
   try {
     const user_id = req.user?.id;
-    
-    if (!user_id) {
-        res.status(401).json({ error: "Unauthorized. Please Login to continue" });
-        return;
-      }
 
-    if(user_id!==req.params.userId){
-      res.status(400).json({ error: "The user's ID in params is different from the one of logged in user !" });
+    if (!user_id) {
+      res.status(401).json({ error: "Unauthorized. Please Login to continue" });
+      return;
+    }
+
+    if (user_id !== req.params.userId) {
+      res.status(400).json({
+        error:
+          "The user's ID in params is different from the one of logged in user !",
+      });
       return;
     }
 

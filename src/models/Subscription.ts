@@ -11,7 +11,10 @@ const subscriptionSchema = new Schema<ISubscription>({
   name: { type: String, required: true },
   price: { type: Number, required: true },
   examAttemptsLimit: { type: Number, default: null },
-  validityDays: { type: Number, required: true },
+  validityDays: { type: Number, required: false },
 });
 
-export default mongoose.model<ISubscription>("Subscription", subscriptionSchema);
+export default mongoose.model<ISubscription>(
+  "Subscription",
+  subscriptionSchema
+);
