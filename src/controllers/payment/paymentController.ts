@@ -86,10 +86,10 @@ export const handlePaymentCallback = async (
 ): Promise<void> => {
   logger.info("Request Body: ", req.body);
   try {
-    const { transaction_id, status } = req.body;
+    const { transactionId, paymentStatus } = req.body;
 
     // Fetch invoice details
-    const invoiceDetails = await iPay.invoice.getInvoice(transaction_id);
+    const invoiceDetails = await iPay.invoice.getInvoice(transactionId);
     if (!invoiceDetails) {
       console.error("❌ Error: Invoice not found");
       res.status(400).json({ error: "Invoice not found" });
@@ -100,7 +100,7 @@ export const handlePaymentCallback = async (
     const email = customer.email;
     const phoneNumber = customer.phoneNumber;
 
-    const parts = transaction_id.split("-");
+    const parts = transactionId.split("-");
 
     const subscriptionId = parts[1]?.replace("s", "");
     const language = parts[2] || "en";
@@ -113,8 +113,8 @@ export const handlePaymentCallback = async (
       return;
     }
 
-    if (status === "COMPLETED") {
-      console.log(`✅ Payment successful for Transaction ${transaction_id}`);
+    if (paymentStatus === "PAID") {
+      console.log(`✅ Payment successful for Transaction ${transactionId}`);
       const subscriptionExists = await Subscription.findById(subscriptionId);
       if (!subscriptionExists) {
         res.status(404).json({ error: "Subscription not found" });
@@ -158,7 +158,7 @@ export const handlePaymentCallback = async (
           html: `Hello ${customer.fullName} Kugura ifatabuguzi ku rubuga umuhanda ntibibashije gukunda. Mukomeze mugerageze murebe cyangwa mujye ahatangirwa ubufasha mutwandikire tubafashe!`,
         });
       }
-      console.log(`❌ Payment failed for Transaction ${transaction_id}`);
+      console.log(`❌ Payment failed for Transaction ${transactionId}`);
     }
   } catch (error: any) {
     console.error("❌ Error processing payment callback:", error);
