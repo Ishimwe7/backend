@@ -3,19 +3,18 @@ import { Request, Response } from "express";
 import User from "../../models/User";
 import { AuthRequest } from "../../middleware/authMiddleware";
 import Subscription from "../../models/Subscription";
-
-dotenv.config();
-
 import { iPay } from "./iremboConfig";
 import UserSubscription from "../../models/UserSubscription";
 import smsService from "../../services/sms.service";
 import emailService from "../../services/email.service";
+import logger from "../../services/logger.service";
+
+dotenv.config();
 
 export const initiatePayment = async (
   req: AuthRequest,
   res: Response
 ): Promise<void> => {
-  console.log("IPAY Object: ", iPay);
   try {
     const { subscription_id, language } = req.body;
     const userId = req.user?.id as string;
@@ -85,6 +84,7 @@ export const handlePaymentCallback = async (
   req: Request,
   res: Response
 ): Promise<void> => {
+  logger.info("Request Body: ", req.body);
   try {
     const { transaction_id, status } = req.body;
 
@@ -95,6 +95,9 @@ export const handlePaymentCallback = async (
       res.status(400).json({ error: "Invoice not found" });
       return;
     }
+
+    logger.info("Request Body: ", req.body);
+
     const { customer } = invoiceDetails.data;
     const email = customer.email;
     const phoneNumber = customer.phoneNumber;

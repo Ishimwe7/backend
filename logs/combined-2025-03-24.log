@@ -63,3 +63,8 @@
 {"level":"info","message":"Subscription cleanup and notification service started","timestamp":"2025-03-24T07:53:00.159Z"}
 {"level":"info","message":"Subscription cleanup and notification service started","timestamp":"2025-03-24T07:53:30.776Z"}
 {"level":"info","message":"Subscription cleanup and notification service started","timestamp":"2025-03-24T07:54:08.936Z"}
+{"level":"error","message":"Login Failed For Mismatching user not found","timestamp":"2025-03-24T08:26:13.020Z"}
+{"level":"info","message":"Subscription cleanup and notification service started","timestamp":"2025-03-24T08:41:15.667Z"}
+{"level":"info","message":"Subscription cleanup and notification service started","timestamp":"2025-03-24T08:41:57.484Z"}
+{"level":"info","message":"Subscription cleanup and notification service started","timestamp":"2025-03-24T08:42:32.672Z"}
+{"level":"info","message":"Subscription cleanup and notification service started","timestamp":"2025-03-24T08:43:40.276Z"}
