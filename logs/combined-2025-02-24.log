@@ -1,0 +1,32 @@
+{"level":"info","message":"Subscription cleanup and notification service started","timestamp":"2025-02-24T07:30:45.214Z"}
+{"level":"info","message":{"messages":[{"messageId":"4403823973894335942952","status":{"description":"Message sent to next instance","groupId":1,"groupName":"PENDING","id":26,"name":"PENDING_ACCEPTED"},"to":"09876587654"}]},"timestamp":"2025-02-24T07:33:17.238Z"}
+{"level":"info","message":"✅ SMS sent successfully to 09876587654","timestamp":"2025-02-24T07:33:17.239Z"}
+{"level":"info","message":{"messages":[{"messageId":"4403825294224335525406","status":{"description":"Message sent to next instance","groupId":1,"groupName":"PENDING","id":26,"name":"PENDING_ACCEPTED"},"to":"0987658765"}]},"timestamp":"2025-02-24T07:35:29.256Z"}
+{"level":"info","message":"✅ SMS sent successfully to 0987658765","timestamp":"2025-02-24T07:35:29.257Z"}
+{"level":"error","message":"Login Failed For Mismatching passowrds","timestamp":"2025-02-24T09:59:56.555Z"}
+{"level":"info","message":"Starting subscription processing","timestamp":"2025-02-24T10:00:00.217Z"}
+{"level":"info","message":"No expired subscriptions found","timestamp":"2025-02-24T10:00:00.351Z"}
+{"level":"info","message":"Subscription processing completed successfully","timestamp":"2025-02-24T10:00:00.679Z"}
+{"level":"error","message":"Login Failed For Mismatching user not found","timestamp":"2025-02-24T10:02:29.236Z"}
+{"level":"info","message":"Subscription cleanup and notification service started","timestamp":"2025-02-24T10:38:49.186Z"}
+{"level":"info","message":"Subscription cleanup and notification service started","timestamp":"2025-02-24T10:39:09.279Z"}
+{"level":"info","message":"Subscription cleanup and notification service started","timestamp":"2025-02-24T10:49:14.187Z"}
+{"level":"info","message":"Subscription cleanup and notification service started","timestamp":"2025-02-24T10:52:42.857Z"}
+{"level":"info","message":"Subscription cleanup and notification service started","timestamp":"2025-02-24T10:53:44.435Z"}
+{"level":"info","message":"Subscription cleanup and notification service started","timestamp":"2025-02-24T10:55:12.415Z"}
+{"level":"info","message":"Subscription cleanup and notification service started","timestamp":"2025-02-24T10:56:38.074Z"}
+{"level":"info","message":"Subscription cleanup and notification service started","timestamp":"2025-02-24T10:56:50.691Z"}
+{"level":"info","message":"Subscription cleanup and notification service started","timestamp":"2025-02-24T10:58:04.129Z"}
+{"level":"info","message":"Subscription cleanup and notification service started","timestamp":"2025-02-24T11:12:42.737Z"}
+{"level":"info","message":"Subscription cleanup and notification service started","timestamp":"2025-02-24T11:13:35.976Z"}
+{"level":"info","message":"Subscription cleanup and notification service started","timestamp":"2025-02-24T14:13:54.619Z"}
+{"level":"info","message":"Subscription cleanup and notification service started","timestamp":"2025-02-24T14:14:12.806Z"}
+{"level":"error","message":"Login Failed For Mismatching passowrds","timestamp":"2025-02-24T14:41:12.404Z"}
+{"level":"info","message":"Subscription cleanup and notification service started","timestamp":"2025-02-24T15:55:24.392Z"}
+{"level":"info","message":"Subscription cleanup and notification service started","timestamp":"2025-02-24T15:58:24.770Z"}
+{"level":"info","message":"Starting subscription processing","timestamp":"2025-02-24T16:00:00.060Z"}
+{"level":"info","message":"No expired subscriptions found","timestamp":"2025-02-24T16:00:00.295Z"}
+{"level":"info","message":"Subscription processing completed successfully","timestamp":"2025-02-24T16:00:02.596Z"}
+{"level":"info","message":"Subscription cleanup and notification service started","timestamp":"2025-02-24T16:03:05.300Z"}
+{"level":"info","message":"Subscription cleanup and notification service started","timestamp":"2025-02-24T16:03:48.692Z"}
+{"level":"info","message":"Subscription cleanup and notification service started","timestamp":"2025-02-24T16:06:45.517Z"}

@@ -1,0 +1,54 @@
+{"level":"info","message":"Subscription cleanup and notification service started","timestamp":"2025-02-26T07:34:16.199Z"}
+{"level":"error","message":"Login Failed For Mismatching user not found","timestamp":"2025-02-26T07:54:39.046Z"}
+{"level":"info","message":{"messages":[{"messageId":"4405565334684335887741","status":{"description":"Message sent to next instance","groupId":1,"groupName":"PENDING","id":26,"name":"PENDING_ACCEPTED"},"to":"09876587654873"}]},"timestamp":"2025-02-26T07:55:33.579Z"}
+{"level":"info","message":"✅ SMS sent successfully to 09876587654873","timestamp":"2025-02-26T07:55:33.583Z"}
+{"level":"info","message":"Subscription cleanup and notification service started","timestamp":"2025-02-26T08:13:41.451Z"}
+{"level":"info","message":"Subscription cleanup and notification service started","timestamp":"2025-02-26T08:39:03.393Z"}
+{"level":"info","message":"Subscription cleanup and notification service started","timestamp":"2025-02-26T10:32:31.869Z"}
+{"level":"info","message":"Subscription cleanup and notification service started","timestamp":"2025-02-26T10:44:17.803Z"}
+{"level":"info","message":"Subscription cleanup and notification service started","timestamp":"2025-02-26T10:53:20.046Z"}
+{"level":"info","message":"Subscription cleanup and notification service started","timestamp":"2025-02-26T10:58:59.575Z"}
+{"level":"info","message":"Subscription cleanup and notification service started","timestamp":"2025-02-26T11:03:18.182Z"}
+{"level":"info","message":"Subscription cleanup and notification service started","timestamp":"2025-02-26T11:03:30.927Z"}
+{"level":"info","message":"Subscription cleanup and notification service started","timestamp":"2025-02-26T11:04:22.899Z"}
+{"level":"info","message":"Subscription cleanup and notification service started","timestamp":"2025-02-26T11:04:57.388Z"}
+{"level":"info","message":"Subscription cleanup and notification service started","timestamp":"2025-02-26T11:05:28.540Z"}
+{"level":"info","message":"Subscription cleanup and notification service started","timestamp":"2025-02-26T11:19:13.241Z"}
+{"level":"info","message":"Subscription cleanup and notification service started","timestamp":"2025-02-26T11:19:19.596Z"}
+{"level":"info","message":"Subscription cleanup and notification service started","timestamp":"2025-02-26T11:19:49.190Z"}
+{"level":"info","message":"Subscription cleanup and notification service started","timestamp":"2025-02-26T11:22:26.586Z"}
+{"level":"info","message":"Subscription cleanup and notification service started","timestamp":"2025-02-26T11:23:02.957Z"}
+{"level":"error","message":"Login Failed For Mismatching user not found","timestamp":"2025-02-26T11:27:08.165Z"}
+{"level":"info","message":"Subscription cleanup and notification service started","timestamp":"2025-02-26T11:28:14.879Z"}
+{"level":"error","message":"Login Failed For Mismatching user not found","timestamp":"2025-02-26T11:29:03.059Z"}
+{"level":"info","message":"Subscription cleanup and notification service started","timestamp":"2025-02-26T11:36:16.906Z"}
+{"level":"info","message":"Subscription cleanup and notification service started","timestamp":"2025-02-26T11:37:31.622Z"}
+{"level":"info","message":"Subscription cleanup and notification service started","timestamp":"2025-02-26T11:37:58.580Z"}
+{"level":"info","message":"Subscription cleanup and notification service started","timestamp":"2025-02-26T11:46:37.033Z"}
+{"level":"info","message":"Subscription cleanup and notification service started","timestamp":"2025-02-26T11:46:45.316Z"}
+{"level":"info","message":"Subscription cleanup and notification service started","timestamp":"2025-02-26T11:47:51.872Z"}
+{"level":"info","message":"Subscription cleanup and notification service started","timestamp":"2025-02-26T11:48:06.925Z"}
+{"level":"info","message":"Subscription cleanup and notification service started","timestamp":"2025-02-26T11:49:58.822Z"}
+{"level":"info","message":"Subscription cleanup and notification service started","timestamp":"2025-02-26T11:51:09.260Z"}
+{"level":"info","message":"Subscription cleanup and notification service started","timestamp":"2025-02-26T11:51:57.403Z"}
+{"level":"info","message":"Subscription cleanup and notification service started","timestamp":"2025-02-26T11:52:33.005Z"}
+{"level":"info","message":"Subscription cleanup and notification service started","timestamp":"2025-02-26T11:54:04.149Z"}
+{"level":"info","message":"Subscription cleanup and notification service started","timestamp":"2025-02-26T11:54:22.188Z"}
+{"level":"info","message":"Subscription cleanup and notification service started","timestamp":"2025-02-26T11:54:46.006Z"}
+{"level":"info","message":"Subscription cleanup and notification service started","timestamp":"2025-02-26T11:58:28.177Z"}
+{"level":"info","message":"Subscription cleanup and notification service started","timestamp":"2025-02-26T11:59:30.739Z"}
+{"level":"info","message":"Subscription cleanup and notification service started","timestamp":"2025-02-26T12:00:18.095Z"}
+{"level":"info","message":"Subscription cleanup and notification service started","timestamp":"2025-02-26T12:29:51.309Z"}
+{"level":"info","message":"Subscription cleanup and notification service started","timestamp":"2025-02-26T12:30:09.021Z"}
+{"level":"info","message":"Subscription cleanup and notification service started","timestamp":"2025-02-26T12:36:39.129Z"}
+{"level":"info","message":"Subscription cleanup and notification service started","timestamp":"2025-02-26T12:37:26.391Z"}
+{"level":"info","message":"Subscription cleanup and notification service started","timestamp":"2025-02-26T20:20:14.988Z"}
+{"level":"info","message":"Subscription cleanup and notification service started","timestamp":"2025-02-26T20:21:16.529Z"}
+{"level":"error","message":"Login Failed For Mismatching user not found","timestamp":"2025-02-26T20:21:28.911Z"}
+{"level":"error","message":"Login Failed For Mismatching user not found","timestamp":"2025-02-26T20:21:36.485Z"}
+{"level":"info","message":{"messages":[{"messageId":"4406013203874335254275","status":{"description":"Message sent to next instance","groupId":1,"groupName":"PENDING","id":26,"name":"PENDING_ACCEPTED"},"to":"09876587654"}]},"timestamp":"2025-02-26T20:22:00.452Z"}
+{"level":"info","message":"✅ SMS sent successfully to 09876587654","timestamp":"2025-02-26T20:22:00.453Z"}
+{"level":"info","message":"Subscription cleanup and notification service started","timestamp":"2025-02-26T20:30:05.923Z"}
+{"level":"info","message":"Subscription cleanup and notification service started","timestamp":"2025-02-26T21:25:25.763Z"}
+{"level":"info","message":"Subscription cleanup and notification service started","timestamp":"2025-02-26T21:38:03.161Z"}
+{"level":"info","message":"Subscription cleanup and notification service started","timestamp":"2025-02-26T21:39:04.048Z"}

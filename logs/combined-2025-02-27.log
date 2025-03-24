@@ -1,0 +1,107 @@
+{"level":"info","message":"Starting subscription processing","timestamp":"2025-02-26T22:00:00.173Z"}
+{"level":"info","message":"No expired subscriptions found","timestamp":"2025-02-26T22:00:01.362Z"}
+{"level":"info","message":"Subscription processing completed successfully","timestamp":"2025-02-26T22:00:01.635Z"}
+{"level":"info","message":"Subscription cleanup and notification service started","timestamp":"2025-02-26T22:23:44.774Z"}
+{"level":"info","message":"Subscription cleanup and notification service started","timestamp":"2025-02-26T22:30:35.448Z"}
+{"level":"info","message":"Subscription cleanup and notification service started","timestamp":"2025-02-26T22:30:41.684Z"}
+{"level":"info","message":"Subscription cleanup and notification service started","timestamp":"2025-02-26T22:34:01.809Z"}
+{"level":"info","message":"Subscription cleanup and notification service started","timestamp":"2025-02-26T22:36:39.736Z"}
+{"level":"error","message":"Login Failed For Mismatching user not found","timestamp":"2025-02-26T22:37:29.808Z"}
+{"level":"info","message":{"messages":[{"messageId":"4406094789774335435410","status":{"description":"Message sent to next instance","groupId":1,"groupName":"PENDING","id":26,"name":"PENDING_ACCEPTED"},"to":"09876587654873"}]},"timestamp":"2025-02-26T22:37:58.711Z"}
+{"level":"info","message":"✅ SMS sent successfully to 09876587654873","timestamp":"2025-02-26T22:37:58.715Z"}
+{"level":"info","message":"Email sent successfully to ishimwe.cyane07@gmail.com","timestamp":"2025-02-26T22:38:00.656Z"}
+{"level":"info","message":{"messages":[{"messageId":"4406096188834335221765","status":{"description":"Message sent to next instance","groupId":1,"groupName":"PENDING","id":26,"name":"PENDING_ACCEPTED"},"to":"09876587654873"}]},"timestamp":"2025-02-26T22:40:18.978Z"}
+{"level":"info","message":"✅ SMS sent successfully to 09876587654873","timestamp":"2025-02-26T22:40:18.980Z"}
+{"level":"info","message":"Email sent successfully to ishimwe.cyane07@gmail.com","timestamp":"2025-02-26T22:40:23.717Z"}
+{"level":"info","message":{"messages":[{"messageId":"4406098124044335630023","status":{"description":"Message sent to next instance","groupId":1,"groupName":"PENDING","id":26,"name":"PENDING_ACCEPTED"},"to":"+250780146235"}]},"timestamp":"2025-02-26T22:43:32.115Z"}
+{"level":"info","message":"✅ SMS sent successfully to +250780146235","timestamp":"2025-02-26T22:43:32.116Z"}
+{"level":"info","message":"Email sent successfully to ishimwe.cyane07@gmail.com","timestamp":"2025-02-26T22:43:35.076Z"}
+{"level":"info","message":"Subscription cleanup and notification service started","timestamp":"2025-02-26T22:45:13.214Z"}
+{"level":"info","message":{"messages":[{"messageId":"4406106625004335650607","status":{"description":"Message sent to next instance","groupId":1,"groupName":"PENDING","id":26,"name":"PENDING_ACCEPTED"},"to":"+250725689109"}]},"timestamp":"2025-02-26T22:57:42.399Z"}
+{"level":"info","message":"✅ SMS sent successfully to +250725689109","timestamp":"2025-02-26T22:57:42.402Z"}
+{"level":"info","message":"Email sent successfully to ishimwe.cyane07@gmail.com","timestamp":"2025-02-26T22:57:46.082Z"}
+{"level":"info","message":{"messages":[{"messageId":"4406120897584335696986","status":{"description":"Message sent to next instance","groupId":1,"groupName":"PENDING","id":26,"name":"PENDING_ACCEPTED"},"to":"+250780146235"}]},"timestamp":"2025-02-26T23:21:29.557Z"}
+{"level":"info","message":"✅ SMS sent successfully to +250780146235","timestamp":"2025-02-26T23:21:29.564Z"}
+{"level":"info","message":"Email sent successfully to ishimwe.cyane07@gmail.com","timestamp":"2025-02-26T23:21:34.368Z"}
+{"level":"info","message":"Subscription cleanup and notification service started","timestamp":"2025-02-27T09:11:32.686Z"}
+{"level":"info","message":"Subscription cleanup and notification service started","timestamp":"2025-02-27T09:16:46.761Z"}
+{"level":"info","message":"Subscription cleanup and notification service started","timestamp":"2025-02-27T09:25:04.964Z"}
+{"level":"info","message":{"messages":[{"messageId":"4406490746504335254556","status":{"description":"Message sent to next instance","groupId":1,"groupName":"PENDING","id":26,"name":"PENDING_ACCEPTED"},"to":"+250780146235"}]},"timestamp":"2025-02-27T09:37:54.636Z"}
+{"level":"info","message":"✅ SMS sent successfully to +250780146235","timestamp":"2025-02-27T09:37:54.639Z"}
+{"level":"info","message":"Email sent successfully to ishimwe.cyane07@gmail.com","timestamp":"2025-02-27T09:38:00.359Z"}
+{"level":"info","message":"Starting subscription processing","timestamp":"2025-02-27T10:00:00.784Z"}
+{"level":"info","message":"No expired subscriptions found","timestamp":"2025-02-27T10:00:00.923Z"}
+{"level":"info","message":"Subscription processing completed successfully","timestamp":"2025-02-27T10:00:01.187Z"}
+{"level":"info","message":{"messages":[{"messageId":"4406505724214335968374","status":{"description":"Message sent to next instance","groupId":1,"groupName":"PENDING","id":26,"name":"PENDING_ACCEPTED"},"to":"+250780146235"}]},"timestamp":"2025-02-27T10:02:52.320Z"}
+{"level":"info","message":"✅ SMS sent successfully to +250780146235","timestamp":"2025-02-27T10:02:52.320Z"}
+{"level":"info","message":"Email sent successfully to ishimwe.cyane07@gmail.com","timestamp":"2025-02-27T10:02:56.696Z"}
+{"level":"info","message":"Subscription cleanup and notification service started","timestamp":"2025-02-27T10:05:35.184Z"}
+{"level":"info","message":{"messages":[{"messageId":"4406508416904335253415","status":{"description":"Message sent to next instance","groupId":1,"groupName":"PENDING","id":26,"name":"PENDING_ACCEPTED"},"to":"+250780146235"}]},"timestamp":"2025-02-27T10:07:21.335Z"}
+{"level":"info","message":"✅ SMS sent successfully to +250780146235","timestamp":"2025-02-27T10:07:21.336Z"}
+{"level":"info","message":"Email sent successfully to ishimwe.cyane07@gmail.com","timestamp":"2025-02-27T10:07:26.249Z"}
+{"level":"error","message":"Login Failed For Mismatching passowrds","timestamp":"2025-02-27T10:08:32.332Z"}
+{"level":"error","message":"Login Failed For Mismatching passowrds","timestamp":"2025-02-27T10:08:39.974Z"}
+{"level":"error","message":"Login Failed For Mismatching passowrds","timestamp":"2025-02-27T10:08:49.778Z"}
+{"level":"error","message":"Login Failed For Mismatching passowrds","timestamp":"2025-02-27T10:08:55.820Z"}
+{"level":"info","message":"Subscription cleanup and notification service started","timestamp":"2025-02-27T10:15:25.074Z"}
+{"level":"error","message":"Login Failed For Mismatching passowrds","timestamp":"2025-02-27T10:22:18.578Z"}
+{"level":"error","message":"Login Failed For Mismatching passowrds","timestamp":"2025-02-27T10:22:22.919Z"}
+{"level":"error","message":"Login Failed For Mismatching passowrds","timestamp":"2025-02-27T10:22:28.399Z"}
+{"level":"info","message":"Subscription cleanup and notification service started","timestamp":"2025-02-27T10:26:22.236Z"}
+{"level":"info","message":"Subscription cleanup and notification service started","timestamp":"2025-02-27T10:26:43.388Z"}
+{"level":"info","message":{"messages":[{"messageId":"4406520386724335505945","status":{"description":"Message sent to next instance","groupId":1,"groupName":"PENDING","id":26,"name":"PENDING_ACCEPTED"},"to":"+250780146235"}]},"timestamp":"2025-02-27T10:27:18.448Z"}
+{"level":"info","message":"✅ SMS sent successfully to +250780146235","timestamp":"2025-02-27T10:27:18.449Z"}
+{"level":"info","message":"Email sent successfully to ishimwe.cyane07@gmail.com","timestamp":"2025-02-27T10:27:22.547Z"}
+{"level":"info","message":"✅ Password changed successfully for user ishimwe.cyane07@gmail.com","timestamp":"2025-02-27T10:28:30.242Z"}
+{"level":"error","message":"Login Failed For Mismatching passowrds","timestamp":"2025-02-27T10:28:41.908Z"}
+{"level":"info","message":"Subscription cleanup and notification service started","timestamp":"2025-02-27T10:31:58.041Z"}
+{"level":"info","message":"Subscription cleanup and notification service started","timestamp":"2025-02-27T10:32:12.904Z"}
+{"level":"info","message":"Subscription cleanup and notification service started","timestamp":"2025-02-27T10:34:13.159Z"}
+{"level":"info","message":"Subscription cleanup and notification service started","timestamp":"2025-02-27T10:34:47.545Z"}
+{"level":"info","message":"Subscription cleanup and notification service started","timestamp":"2025-02-27T10:35:14.691Z"}
+{"level":"info","message":"Subscription cleanup and notification service started","timestamp":"2025-02-27T10:35:34.639Z"}
+{"level":"info","message":"Subscription cleanup and notification service started","timestamp":"2025-02-27T10:36:18.547Z"}
+{"level":"info","message":"Subscription cleanup and notification service started","timestamp":"2025-02-27T10:36:33.385Z"}
+{"level":"info","message":"Subscription cleanup and notification service started","timestamp":"2025-02-27T10:37:01.099Z"}
+{"level":"info","message":"Subscription cleanup and notification service started","timestamp":"2025-02-27T10:37:28.973Z"}
+{"level":"info","message":"Subscription cleanup and notification service started","timestamp":"2025-02-27T10:37:45.259Z"}
+{"level":"info","message":"Subscription cleanup and notification service started","timestamp":"2025-02-27T10:38:10.291Z"}
+{"level":"info","message":"Subscription cleanup and notification service started","timestamp":"2025-02-27T10:39:38.450Z"}
+{"level":"info","message":"Subscription cleanup and notification service started","timestamp":"2025-02-27T10:39:48.286Z"}
+{"level":"info","message":"Subscription cleanup and notification service started","timestamp":"2025-02-27T10:39:55.763Z"}
+{"level":"info","message":"Subscription cleanup and notification service started","timestamp":"2025-02-27T10:40:08.950Z"}
+{"level":"info","message":"Subscription cleanup and notification service started","timestamp":"2025-02-27T10:40:23.060Z"}
+{"level":"info","message":"Subscription cleanup and notification service started","timestamp":"2025-02-27T10:43:22.663Z"}
+{"level":"info","message":"Subscription cleanup and notification service started","timestamp":"2025-02-27T10:44:00.344Z"}
+{"level":"info","message":"Subscription cleanup and notification service started","timestamp":"2025-02-27T10:44:07.676Z"}
+{"level":"info","message":"Subscription cleanup and notification service started","timestamp":"2025-02-27T10:44:56.984Z"}
+{"level":"info","message":"Subscription cleanup and notification service started","timestamp":"2025-02-27T10:45:02.130Z"}
+{"level":"info","message":"Subscription cleanup and notification service started","timestamp":"2025-02-27T10:45:39.691Z"}
+{"level":"info","message":"Subscription cleanup and notification service started","timestamp":"2025-02-27T10:47:18.691Z"}
+{"level":"info","message":"Subscription cleanup and notification service started","timestamp":"2025-02-27T10:47:40.563Z"}
+{"level":"info","message":"Subscription cleanup and notification service started","timestamp":"2025-02-27T11:17:05.505Z"}
+{"level":"info","message":"Subscription cleanup and notification service started","timestamp":"2025-02-27T11:28:38.508Z"}
+{"level":"info","message":"Subscription cleanup and notification service started","timestamp":"2025-02-27T11:28:45.286Z"}
+{"level":"info","message":"Subscription cleanup and notification service started","timestamp":"2025-02-27T11:31:07.502Z"}
+{"level":"info","message":"Subscription cleanup and notification service started","timestamp":"2025-02-27T11:31:14.893Z"}
+{"level":"info","message":"Subscription cleanup and notification service started","timestamp":"2025-02-27T11:33:05.885Z"}
+{"level":"info","message":"Subscription cleanup and notification service started","timestamp":"2025-02-27T11:36:02.452Z"}
+{"level":"info","message":{"messages":[{"messageId":"4406565923104335403907","status":{"description":"Message sent to next instance","groupId":1,"groupName":"PENDING","id":26,"name":"PENDING_ACCEPTED"},"to":"+250780146235"}]},"timestamp":"2025-02-27T11:43:20.580Z"}
+{"level":"info","message":"✅ SMS sent successfully to +250780146235","timestamp":"2025-02-27T11:43:20.582Z"}
+{"level":"info","message":"Email sent successfully to tuyishimehope01@gmail.com","timestamp":"2025-02-27T11:43:43.786Z"}
+{"level":"info","message":{"messages":[{"messageId":"4406566252654335202388","status":{"description":"Message sent to next instance","groupId":1,"groupName":"PENDING","id":26,"name":"PENDING_ACCEPTED"},"to":"+250780146235"}]},"timestamp":"2025-02-27T11:43:44.888Z"}
+{"level":"info","message":"✅ SMS sent successfully to +250780146235","timestamp":"2025-02-27T11:43:44.889Z"}
+{"level":"info","message":"Email sent successfully to tuyishimehope01@gmail.com","timestamp":"2025-02-27T11:43:57.990Z"}
+{"level":"info","message":"Subscription cleanup and notification service started","timestamp":"2025-02-27T11:46:18.154Z"}
+{"level":"info","message":"Subscription cleanup and notification service started","timestamp":"2025-02-27T11:47:14.239Z"}
+{"level":"info","message":{"messages":[{"messageId":"4406568840724335371559","status":{"description":"Message sent to next instance","groupId":1,"groupName":"PENDING","id":26,"name":"PENDING_ACCEPTED"},"to":"+250780146235"}]},"timestamp":"2025-02-27T11:48:03.829Z"}
+{"level":"info","message":"✅ SMS sent successfully to +250780146235","timestamp":"2025-02-27T11:48:03.830Z"}
+{"level":"info","message":"Email sent successfully to tuyishimehope01@gmail.com","timestamp":"2025-02-27T11:48:07.848Z"}
+{"level":"info","message":{"messages":[{"messageId":"4406568883604335505246","status":{"description":"Message sent to next instance","groupId":1,"groupName":"PENDING","id":26,"name":"PENDING_ACCEPTED"},"to":"+250780146235"}]},"timestamp":"2025-02-27T11:48:08.204Z"}
+{"level":"info","message":"✅ SMS sent successfully to +250780146235","timestamp":"2025-02-27T11:48:08.204Z"}
+{"level":"info","message":"Email sent successfully to tuyishimehope01@gmail.com","timestamp":"2025-02-27T11:48:14.707Z"}
+{"level":"info","message":"Subscription cleanup and notification service started","timestamp":"2025-02-27T12:35:22.932Z"}
+{"level":"info","message":{"messages":[{"messageId":"4406598040594335909135","status":{"description":"Message sent to next instance","groupId":1,"groupName":"PENDING","id":26,"name":"PENDING_ACCEPTED"},"to":"+250780146235"}]},"timestamp":"2025-02-27T12:36:45.068Z"}
+{"level":"info","message":"✅ SMS sent successfully to +250780146235","timestamp":"2025-02-27T12:36:45.070Z"}
+{"level":"info","message":"Email sent successfully to ishimweinstein@gmail.com","timestamp":"2025-02-27T12:37:12.969Z"}
+{"level":"info","message":"Email sent successfully to ishimwe.cyane07@gmail.com","timestamp":"2025-02-27T12:37:24.926Z"}
