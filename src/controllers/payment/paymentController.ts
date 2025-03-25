@@ -73,7 +73,7 @@ export const initiatePayment = async (
         transactionType === "gazette" ? "Gazette" : "Subscription"
       } Payment`,
       expiryAt: new Date(Date.now() + 30 * 60 * 1000).toISOString(),
-      language: "FR",
+      language: langCode,
     });
     res.json({
       success: true,

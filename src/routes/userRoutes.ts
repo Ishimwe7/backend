@@ -11,7 +11,10 @@ import {
   verifyResetCode,
 } from "../controllers/userController";
 import authMiddleware from "../middleware/authMiddleware";
-import { checkGazetteAccess } from "../controllers/gazetteAccess";
+import {
+  checkGazetteAccess,
+  disableGazetteAccess,
+} from "../controllers/gazetteAccess";
 
 const router = express.Router();
 
@@ -25,5 +28,6 @@ router.post("/request-reset", requestPasswordReset);
 router.post("/verify-reset", verifyResetCode);
 router.post("/reset-password", resetPassword);
 router.get("/gazette-access", authMiddleware, checkGazetteAccess);
+router.put("/disable-gazette-access", authMiddleware, disableGazetteAccess);
 
 export default router;
