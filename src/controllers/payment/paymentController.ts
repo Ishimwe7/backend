@@ -15,24 +15,19 @@ export const initiatePayment = async (
   res: Response
 ): Promise<void> => {
   try {
-    const {
-      subscription_id,
-      language,
-      transactionType = "subscription",
-    } = req.body;
+    const { subscription_id, language, transactionType = "sub" } = req.body;
     const userId = req.user?.id as string;
 
     const client = await User.findById(userId).lean();
     let amount = 0;
-    let shortSubId = "0";
 
     const timestamp = Date.now();
     let langCode = language.slice(0, 2).toUpperCase();
-    const transactionId = `TX-${transactionType}-s${shortSubId}-${langCode}-${timestamp}`;
+    const transactionId = `TX-${transactionType}-s${subscription_id}-${langCode}-${timestamp}`;
     if (langCode != "EN" && langCode != "FR") {
       langCode = "RW";
     }
-    if (transactionType === "subscription") {
+    if (transactionType === "sub") {
       if (!subscription_id) {
         res.status(400).json({
           error: "subscription_id is required for subscription payments",
@@ -45,12 +40,10 @@ export const initiatePayment = async (
         res.status(400).json({ error: "No Such Subscription Found!" });
         return;
       }
-
-      shortSubId = subscription._id.toString();
       amount = subscription.price;
     }
 
-    if (transactionType === "gazette") {
+    if (transactionType === "gaz") {
       amount = 2000; // or get this from a config or DB
     }
 
@@ -124,7 +117,7 @@ export const handlePaymentCallback = async (
 
     if (paymentStatus === "PAID") {
       console.log(`✅ Payment successful for Transaction ${transactionId}`);
-      if (type === "subscription") {
+      if (type === "sub") {
         const subscriptionExists = await Subscription.findById(subscriptionId);
         if (!subscriptionExists) {
           res.status(404).json({ error: "Subscription not found" });
@@ -133,7 +126,7 @@ export const handlePaymentCallback = async (
 
         const subscription = new UserSubscription({
           user_id: user._id,
-          subscription: "67bf7c68c884017f1366f660",
+          subscription: subscriptionId,
           start_date: Date.now(),
           language: language,
           attempts_left: subscriptionExists.examAttemptsLimit,
@@ -157,7 +150,7 @@ export const handlePaymentCallback = async (
         res.status(201).json(savedSubscription);
         return;
       } else {
-        if (type === "gazette") {
+        if (type === "gaz") {
           await User.findByIdAndUpdate(user._id, {
             $set: { allowedToDownloadGazette: true },
           });
