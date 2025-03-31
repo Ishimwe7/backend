@@ -94,13 +94,16 @@ export const handlePaymentCallback = async (
     const invoiceDetails = await iPay.invoice.getInvoice(invoiceNumber);
     if (!invoiceDetails) {
       console.error("❌ Error: Invoice not found");
-      res.status(400).json({ error: "Invoice not found" });
+      res.redirect(
+        `${process.env.FRONTEND_URL}/client/payment/failure?invoice=${invoiceNumber}`
+      );
       return;
     }
 
     const { customer } = invoiceDetails.data;
     const email = customer.email;
     const phoneNumber = customer.phoneNumber;
+    const paymentUrl = invoiceDetails.data.paymentLinkUrl;
 
     const parts = transactionId.split("-");
     const type = parts[1];
@@ -111,7 +114,9 @@ export const handlePaymentCallback = async (
 
     if (!user) {
       console.error("❌ User not found!");
-      res.status(400).json({ error: "User not found!" });
+      res.redirect(
+        `${process.env.FRONTEND_URL}/client/payment/failure?invoice=${invoiceNumber}`
+      );
       return;
     }
 
@@ -120,7 +125,9 @@ export const handlePaymentCallback = async (
       if (type === "sub") {
         const subscriptionExists = await Subscription.findById(subscriptionId);
         if (!subscriptionExists) {
-          res.status(404).json({ error: "Subscription not found" });
+          res.redirect(
+            `${process.env.FRONTEND_URL}/client/payment/failure?invoice=${invoiceNumber}`
+          );
           return;
         }
 
@@ -147,7 +154,7 @@ export const handlePaymentCallback = async (
             html: `Hello ${customer.fullName} Murakoze gufata ifatabuguzi ku rubuga umuhanda. Ubu mushobora kwinjira kurubuga mugakora isuzuma ! !`,
           });
         }
-        res.status(201).json(savedSubscription);
+        res.redirect(`${process.env.FRONTEND_URL}/client/payment/success`);
         return;
       } else {
         if (type === "gaz") {
@@ -159,16 +166,20 @@ export const handlePaymentCallback = async (
     } else {
       smsService.sendSMS(
         phoneNumber,
-        `Hello ${customer.fullName} Kugura ifatabuguzi ku rubuga umuhanda ntibibashije gukunda!`
+        `Hello ${customer.fullName} Kugura ifatabuguzi ku rubuga umuhanda ntibibashije gukunda! Mushobora kongera mugerageza hano: ${paymentUrl}`
       );
       if (email) {
         emailService.sendEmail({
           to: email,
           subject: "Kugura Ifatabuguzi",
-          html: `Hello ${customer.fullName} Kugura ifatabuguzi ku rubuga umuhanda ntibibashije gukunda. Mukomeze mugerageze murebe cyangwa mujye ahatangirwa ubufasha mutwandikire tubafashe!`,
+          html: `Hello ${customer.fullName}, Kugura ifatabuguzi ntibibashije gukunda. <br/>Mushobora kugerageza kongera kuri iri huzwa: <a href="${paymentUrl}">${paymentUrl}</a><br/>Cyangwa mutwandikire tubafashe.`,
         });
       }
       console.log(`❌ Payment failed for Transaction ${transactionId}`);
+      res.redirect(
+        `${process.env.FRONTEND_URL}/client/payment/failure?invoice=${invoiceNumber}`
+      );
+      return;
     }
   } catch (error: any) {
     console.error("❌ Error processing payment callback:", error);
