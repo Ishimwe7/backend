@@ -141,7 +141,7 @@ export const handlePaymentCallback = async (
         const savedSubscription = await subscription.save();
         await User.findByIdAndUpdate(req.body.user_id, {
           $push: { subscriptions: subscription._id },
-          is_subscribed: true,
+          subscribed: true,
         });
         smsService.sendSMS(
           phoneNumber,
