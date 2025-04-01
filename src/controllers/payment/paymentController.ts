@@ -94,29 +94,24 @@ export const handlePaymentCallback = async (
     const invoiceDetails = await iPay.invoice.getInvoice(invoiceNumber);
     if (!invoiceDetails) {
       console.error("❌ Error: Invoice not found");
-      res.redirect(
-        `${process.env.FRONTEND_URL}/client/payment/failure?invoice=${invoiceNumber}`
-      );
+      res.status(400).json({ error: "Invoice not found" });
       return;
     }
 
-    const { customer } = invoiceDetails.data;
+    const { customer, paymentLinkUrl } = invoiceDetails.data;
     const email = customer.email;
     const phoneNumber = customer.phoneNumber;
-    const paymentUrl = invoiceDetails.data.paymentLinkUrl;
 
     const parts = transactionId.split("-");
     const type = parts[1];
     const subscriptionId = parts[2]?.replace("s", "");
     const language = parts[3] || "en";
     // Find the user and subscription
-    const user = await User.findOne({ email }).lean();
+    const user = await User.findOne({ email });
 
     if (!user) {
       console.error("❌ User not found!");
-      res.redirect(
-        `${process.env.FRONTEND_URL}/client/payment/failure?invoice=${invoiceNumber}`
-      );
+      res.status(400).json({ error: "User not found!" });
       return;
     }
 
@@ -125,9 +120,7 @@ export const handlePaymentCallback = async (
       if (type === "sub") {
         const subscriptionExists = await Subscription.findById(subscriptionId);
         if (!subscriptionExists) {
-          res.redirect(
-            `${process.env.FRONTEND_URL}/client/payment/failure?invoice=${invoiceNumber}`
-          );
+          res.status(404).json({ error: "Subscription not found" });
           return;
         }
 
@@ -139,10 +132,17 @@ export const handlePaymentCallback = async (
           attempts_left: subscriptionExists.examAttemptsLimit,
         });
         const savedSubscription = await subscription.save();
-        await User.findByIdAndUpdate(req.body.user_id, {
-          $push: { subscriptions: subscription._id },
-          subscribed: true,
-        });
+        await User.findByIdAndUpdate(
+          savedSubscription.user_id,
+          {
+            $push: { subscriptions: subscription._id },
+            $set: {
+              subscribed: true,
+              active_subscription: subscription,
+            },
+          },
+          { new: true }
+        );
         smsService.sendSMS(
           phoneNumber,
           `Hello ${customer.fullName} Murakoze gufata ifatabuguzi ku rubuga umuhanda!`
@@ -154,7 +154,7 @@ export const handlePaymentCallback = async (
             html: `Hello ${customer.fullName} Murakoze gufata ifatabuguzi ku rubuga umuhanda. Ubu mushobora kwinjira kurubuga mugakora isuzuma ! !`,
           });
         }
-        res.redirect(`${process.env.FRONTEND_URL}/client/payment/success`);
+        res.status(201).json(savedSubscription);
         return;
       } else {
         if (type === "gaz") {
@@ -166,20 +166,16 @@ export const handlePaymentCallback = async (
     } else {
       smsService.sendSMS(
         phoneNumber,
-        `Hello ${customer.fullName} Kugura ifatabuguzi ku rubuga umuhanda ntibibashije gukunda! Mushobora kongera mugerageza hano: ${paymentUrl}`
+        `Hello ${customer.fullName} Kugura ifatabuguzi ku rubuga umuhanda ntibibashije gukunda! Mushobora kongera mugerageza hano: ${paymentLinkUrl}`
       );
       if (email) {
         emailService.sendEmail({
           to: email,
           subject: "Kugura Ifatabuguzi",
-          html: `Hello ${customer.fullName}, Kugura ifatabuguzi ntibibashije gukunda. <br/>Mushobora kugerageza kongera kuri iri huzwa: <a href="${paymentUrl}">${paymentUrl}</a><br/>Cyangwa mutwandikire tubafashe.`,
+          html: `Hello ${customer.fullName}, Kugura ifatabuguzi ntibibashije gukunda. <br/>Mushobora kugerageza kongera kuri iri huzwa: <a href="${paymentLinkUrl}">${paymentLinkUrl}</a><br/>Cyangwa mutwandikire tubafashe.`,
         });
       }
       console.log(`❌ Payment failed for Transaction ${transactionId}`);
-      res.redirect(
-        `${process.env.FRONTEND_URL}/client/payment/failure?invoice=${invoiceNumber}`
-      );
-      return;
     }
   } catch (error: any) {
     console.error("❌ Error processing payment callback:", error);
