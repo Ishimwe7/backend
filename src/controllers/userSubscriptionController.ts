@@ -43,7 +43,7 @@ class UserSubscriptionController {
       const savedSubscription = await subscription.save();
       await User.findByIdAndUpdate(req.body.user_id, {
         $push: { subscriptions: subscription._id },
-        is_subscribed: true,
+        subscribed: true,
       });
 
       res.status(201).json(savedSubscription);
@@ -235,11 +235,9 @@ class UserSubscriptionController {
 
       // Update user's subscription status
       await User.findByIdAndUpdate(user_id, {
-        is_subscribed: activeSubscriptions.length > 0,
+        subscribed: activeSubscriptions.length > 0,
         active_subscription:
-          activeSubscriptions.length > 0
-            ? activeSubscriptions[0].subscription
-            : null,
+          activeSubscriptions.length > 0 ? activeSubscriptions[0]._id : null,
       }).session(session);
 
       await session.commitTransaction();

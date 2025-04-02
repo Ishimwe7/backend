@@ -43,7 +43,7 @@ class SubscriptionCleanupService {
     const expiredSubscriptions = await UserSubscription.find({
       end_date: { $lt: currentDate },
     })
-      .populate<{ subscription_id: ISubscription }>("subscription_id", "name")
+      .populate<{ subscription_id: ISubscription }>("subscription", "name")
       .populate<{ user_id: IUser }>("user_id", "names email phone_number")
       .session(session);
 
@@ -79,11 +79,9 @@ class SubscriptionCleanupService {
 
         await User.findByIdAndUpdate(userId, {
           $pull: { subscriptions: { $in: expiredSubscriptionIds } },
-          is_subscribed: activeSubscriptions.length > 0,
+          subscribed: activeSubscriptions.length > 0,
           active_subscription:
-            activeSubscriptions.length > 0
-              ? activeSubscriptions[0].subscription
-              : null,
+            activeSubscriptions.length > 0 ? activeSubscriptions[0]._id : null,
         }).session(session);
       }
     );
