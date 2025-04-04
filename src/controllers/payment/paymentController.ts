@@ -7,6 +7,7 @@ import { iPay } from "./iremboConfig";
 import UserSubscription from "../../models/UserSubscription";
 import smsService from "../../services/sms.service";
 import emailService from "../../services/email.service";
+import { emitUserUpdate } from "../../services/socketEmitter";
 
 dotenv.config();
 
@@ -143,6 +144,7 @@ export const handlePaymentCallback = async (
           },
           { new: true }
         );
+        emitUserUpdate(user._id as string);
         smsService.sendSMS(
           phoneNumber,
           `Hello ${customer.fullName} Murakoze gufata ifatabuguzi ku rubuga umuhanda!`
