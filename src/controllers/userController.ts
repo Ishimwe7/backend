@@ -62,7 +62,7 @@ export const registerUser = async (req: Request, res: Response) => {
       emailService.sendEmail({
         to: user.email,
         subject: "Kwiyandikisha",
-        html: `Hello ${user.names} murakoze kwiyandikisha k'urubuga Umuhanda. Ubu mwakwinjira muri konti yanyu mugatangira kwiga !`,
+        html: `Muraho ${user.names} murakoze kwiyandikisha k'urubuga Umuhanda. Ubu <a href="${process.env.FRONTEND_URL}/signin" style="color: #1a73e8; text-decoration: none;">mwakinjira</a> muri konti yanyu mugatangira kwiga !`,
       });
     }
     res
@@ -160,7 +160,11 @@ export const getUserInfo = async (req: AuthRequest, res: Response) => {
       res.status(404).json({ error: "User not found!" });
       return;
     }
-    const userSubscriptions = await UserSubscription.find({ user_id: userId })
+    const currentDate = new Date();
+    const userSubscriptions = await UserSubscription.find({
+      user_id: userId,
+      end_date: { $gt: currentDate },
+    })
       .populate("subscription")
       .lean();
 
@@ -305,7 +309,7 @@ export const requestPasswordReset = async (req: Request, res: Response) => {
       await emailService.sendEmail({
         to: user.email,
         subject: "Password Reset Code",
-        html: `<p>Your Password reset code is: <strong>${resetCode}</strong>. Be aware that it will expire in 10 minutes</p>`,
+        html: `<p>Your Password reset password code is: <strong>${resetCode}</strong>. Be aware that it will expire in 10 minutes</p>`,
       });
     }
 

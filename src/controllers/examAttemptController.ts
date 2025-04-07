@@ -33,13 +33,13 @@ export const createExamAttempt = async (req: AuthRequest, res: Response) => {
     await attempt.save();
     smsService.sendSMS(
       userExists.phone_number,
-      `Hello ${userExists.names} wabonye amanota ${score}/20 mu isuzuma wakoze. Komeza ukore kenshi witegura ikizamini cya nyuma !`
+      `Muraho ${userExists.names}, wabonye amanota ${score}/20 mu isuzuma wakoze. Komeza ukore kenshi witegura ikizamini cya nyuma !`
     );
     if (userExists.email) {
       emailService.sendEmail({
         to: userExists.email,
         subject: "Amanota y'ikizamini",
-        html: `Hello ${userExists.names} wabonye amanota ${score}/20 mu isuzuma wakoze. Komeza ukore kenshi witegura ikizamini cya nyuma !`,
+        html: `Muraho ${userExists.names}, wabonye amanota ${score}/20 mu isuzuma wakoze. Komeza ukore kenshi witegura ikizamini cya nyuma !`,
       });
     }
     res

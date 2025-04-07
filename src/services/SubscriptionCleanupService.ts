@@ -16,9 +16,9 @@ interface IUser {
 }
 
 class SubscriptionCleanupService {
-  private cronSchedule = "*/5 * * * *"; // every 5 minutes
+  //private cronSchedule = "*/5 * * * *"; // every 5 minutes
 
-  //private cronSchedule = "0 */6 * * *"; // Run every 6 hours
+  private cronSchedule = "0 */6 * * *"; // Run every 6 hours
   private cronJob: cron.ScheduledTask;
 
   constructor() {
