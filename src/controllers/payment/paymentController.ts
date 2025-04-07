@@ -144,7 +144,10 @@ export const handlePaymentCallback = async (
           },
           { new: true }
         );
-        emitUserUpdate(user._id as string);
+        emitUserUpdate(user._id as string, {
+          type: "subscription",
+          data: { subscriptionId: savedSubscription._id },
+        });
         smsService.sendSMS(
           phoneNumber,
           `Hello ${customer.fullName} Murakoze gufata ifatabuguzi ku rubuga umuhanda!`
@@ -162,6 +165,10 @@ export const handlePaymentCallback = async (
         if (type === "gaz") {
           await User.findByIdAndUpdate(user._id, {
             $set: { allowedToDownloadGazette: true },
+          });
+          emitUserUpdate(user._id as string, {
+            type: "gazette",
+            data: { canDownload: true },
           });
         }
       }

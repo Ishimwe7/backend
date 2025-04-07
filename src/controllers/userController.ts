@@ -62,7 +62,7 @@ export const registerUser = async (req: Request, res: Response) => {
       emailService.sendEmail({
         to: user.email,
         subject: "Kwiyandikisha",
-        html: `Hello ${user.names} murakoze kwiyandikisha k'urubuga Umuhanda. Ubu mwakwinjira muri konti yanyu mugatangira kwiga !`,
+        html: `Muraho ${user.names} murakoze kwiyandikisha k'urubuga Umuhanda. Ubu <a href="${process.env.FRONTEND_URL}/signin" style="color: #1a73e8; text-decoration: none;">mwakinjira</a> muri konti yanyu mugatangira kwiga !`,
       });
     }
     res
@@ -147,8 +147,70 @@ export const logoutUser = async (
 export const getUserInfo = async (req: AuthRequest, res: Response) => {
   try {
     const userId = req.user?.id;
+    const now = new Date();
 
-    const existingUser = await User.findById(userId)
+    // Step 1: Fetch user with active subscription
+    const user = await User.findById(userId).populate({
+      path: "active_subscription",
+      populate: {
+        path: "subscription",
+      },
+    });
+
+    if (!user) {
+      res.status(404).json({ error: "User not found!" });
+      return;
+    }
+
+    // Step 2: Remove expired active subscription
+    if (
+      user.active_subscription &&
+      new Date(user.active_subscription.end_date) <= now
+    ) {
+      await UserSubscription.findByIdAndDelete(user.active_subscription._id);
+      user.active_subscription = null;
+    }
+
+    // Step 3: Fetch all user subscriptions
+    const allUserSubs = await UserSubscription.find({
+      user_id: userId,
+    }).populate("subscription");
+
+    const validSubs: mongoose.Types.ObjectId[] = [];
+    const validSubDocs: any[] = [];
+
+    for (const sub of allUserSubs) {
+      if (new Date(sub.end_date) > now && sub.subscription) {
+        validSubs.push(sub._id as mongoose.Types.ObjectId);
+        validSubDocs.push(sub); // keep the full doc to sort by price later
+      } else {
+        await UserSubscription.findByIdAndDelete(sub._id);
+      }
+    }
+
+    // Step 4: Clean user.subscriptions
+    user.subscriptions = user.subscriptions?.filter((subId: any) =>
+      validSubs.some((valid) => valid.toString() === subId.toString())
+    );
+
+    // ✅ Step 5: Set active_subscription to the one with highest price if current is null
+    if (!user.active_subscription && validSubDocs.length > 0) {
+      const mostExpensive = validSubDocs.sort(
+        (a, b) => b.subscription.price - a.subscription.price
+      )[0];
+
+      user.active_subscription = mostExpensive._id;
+    }
+
+    // Step 6: Update subscribed status
+    user.subscribed =
+      user.active_subscription !== null && user.subscriptions.length > 0;
+
+    // Step 7: Save user
+    await user.save();
+
+    // Step 8: Fetch updated user with populated fields
+    const updatedUser = await User.findById(userId)
       .populate({
         path: "active_subscription",
         populate: {
@@ -156,22 +218,30 @@ export const getUserInfo = async (req: AuthRequest, res: Response) => {
         },
       })
       .lean();
-    if (!existingUser) {
-      res.status(404).json({ error: "User not found!" });
+
+    if (!updatedUser) {
+      res.status(404).json({ error: "User not found after update!" });
       return;
     }
-    const userSubscriptions = await UserSubscription.find({ user_id: userId })
+
+    // Step 9: Populate user's valid subscriptions
+    const populatedValidSubs = await UserSubscription.find({
+      _id: { $in: user.subscriptions },
+    })
       .populate("subscription")
       .lean();
 
-    existingUser.subscriptions = userSubscriptions;
+    updatedUser.subscriptions = populatedValidSubs;
 
-    res
-      .status(200)
-      .json({ message: "User info fetched successfully!", user: existingUser });
+    res.status(200).json({
+      message: "User info fetched successfully!",
+      user: updatedUser,
+    });
+    return;
   } catch (error) {
     console.error("❌ Error in Fetching User's Info:", error);
     res.status(500).json({ error: "Internal Server Error" });
+    return;
   }
 };
 
@@ -305,7 +375,7 @@ export const requestPasswordReset = async (req: Request, res: Response) => {
       await emailService.sendEmail({
         to: user.email,
         subject: "Password Reset Code",
-        html: `<p>Your Password reset code is: <strong>${resetCode}</strong>. Be aware that it will expire in 10 minutes</p>`,
+        html: `<p>Your Password reset password code is: <strong>${resetCode}</strong>. Be aware that it will expire in 10 minutes</p>`,
       });
     }
 
