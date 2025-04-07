@@ -11,7 +11,7 @@ router.get(
   UserSubscriptionController.getUserSubscriptions
 );
 router.get(
-  "/active/:userId",
+  "/active",
   authMiddleware,
   UserSubscriptionController.getActiveUserSubscriptions
 );

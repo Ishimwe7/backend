@@ -69,13 +69,6 @@ export const getAllAttempts = async (req: AuthRequest, res: Response) => {
 export const getAttemptsByUserId = async (req: AuthRequest, res: Response) => {
   try {
     const userId = req.user?.id;
-    if (userId !== req.params.userId) {
-      res.status(400).json({
-        error:
-          "The user's ID in params is different from the one of logged in user !",
-      });
-      return;
-    }
     const attempts = await ExamAttempt.find({ user_id: userId });
 
     if (!attempts || attempts.length === 0) {
@@ -102,14 +95,6 @@ export const getUserExamStats = async (req: AuthRequest, res: Response) => {
 
     if (!user_id) {
       res.status(401).json({ error: "Unauthorized. Please Login to continue" });
-      return;
-    }
-
-    if (user_id !== req.params.userId) {
-      res.status(400).json({
-        error:
-          "The user's ID in params is different from the one of logged in user !",
-      });
       return;
     }
 

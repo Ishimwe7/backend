@@ -113,7 +113,7 @@ export const loginUser = async (req: Request, res: Response): Promise<void> => {
     res.cookie("authToken", token, {
       httpOnly: true, // 🛑 Prevents JavaScript access (protects against XSS attacks)
       secure: process.env.NODE_ENV === "production", // 🛑 Secure cookies in production (HTTPS)
-      sameSite: "strict", // 🛑 Prevents CSRF attacks
+      sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
       maxAge: 1 * 60 * 60 * 1000,
     });
 
@@ -147,13 +147,6 @@ export const logoutUser = async (
 export const getUserInfo = async (req: AuthRequest, res: Response) => {
   try {
     const userId = req.user?.id;
-    if (userId !== req.params.userId) {
-      res.status(400).json({
-        error:
-          "The user's info you're trying to fetch are different from logged in user!",
-      });
-      return;
-    }
 
     const existingUser = await User.findById(userId)
       .populate({

@@ -37,12 +37,15 @@ app.use("/api/contact", contactRoute);
 app.use("/api", paymentRoutes);
 
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log(`✅ Server is running on port ${PORT}`));
+// app.listen(PORT, () => console.log(`✅ Server is running on port ${PORT}`));
+// const server = http.createServer(app);
+
 const server = http.createServer(app);
+server.listen(PORT, () => console.log(`✅ Server is running on port ${PORT}`));
 
 export const io = new Server(server, {
   cors: {
-    origin: "*", // or your frontend URL
+    origin: ["http://localhost:5173", "https://umuhanda.netlify.app"],
     methods: ["GET", "POST"],
   },
 });

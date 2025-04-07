@@ -10,6 +10,6 @@ const router = express.Router();
 
 router.post("/new", authMiddleware, createExamAttempt);
 router.get("/all", authMiddleware, getAllAttempts);
-router.get("/:userId", authMiddleware, getUserExamStats);
+router.get("/", authMiddleware, getUserExamStats);
 
 export default router;

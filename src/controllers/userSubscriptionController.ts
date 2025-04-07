@@ -71,8 +71,8 @@ class UserSubscriptionController {
       }
 
       const subscription = await UserSubscription.findOne({
-        _id: subscription_id,
-        user_id: user_id,
+        _id: new mongoose.Types.ObjectId(subscription_id),
+        user_id: new mongoose.Types.ObjectId(user_id),
       });
 
       if (!subscription) {
@@ -84,6 +84,10 @@ class UserSubscriptionController {
 
       const currentDate = new Date();
       if (subscription.end_date && subscription.end_date <= currentDate) {
+        console.log(
+          "Cannot activate an expired subscription. End date was : ",
+          subscription.end_date
+        );
         res
           .status(400)
           .json({ message: "Cannot activate an expired subscription." });
@@ -170,7 +174,7 @@ class UserSubscriptionController {
         return;
       }
       const subscription = await UserSubscription.findByIdAndUpdate(
-        req.params.id,
+        req.user?.id,
         { attempts_left: req.body.attempts_left },
         { new: true }
       );
@@ -283,7 +287,7 @@ class UserSubscriptionController {
     try {
       const currentDate = new Date();
       const activeSubscription = await UserSubscription.findOne({
-        user_id: req.params.userId,
+        user_id: req.user?.id,
         end_date: { $gt: currentDate },
       }).populate("subscription_id");
 

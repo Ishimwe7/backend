@@ -16,7 +16,9 @@ interface IUser {
 }
 
 class SubscriptionCleanupService {
-  private cronSchedule = "0 */6 * * *"; // Run every 6 hours
+  private cronSchedule = "*/5 * * * *"; // every 5 minutes
+
+  //private cronSchedule = "0 */6 * * *"; // Run every 6 hours
   private cronJob: cron.ScheduledTask;
 
   constructor() {
@@ -39,7 +41,6 @@ class SubscriptionCleanupService {
     const currentDate = new Date();
 
     // Find expired subscriptions with related user and subscription data
-
     const expiredSubscriptions = await UserSubscription.find({
       end_date: { $lt: currentDate },
     })
@@ -53,9 +54,16 @@ class SubscriptionCleanupService {
     }
 
     // Group expired subscriptions by user
-
     const userSubscriptionsMap = new Map<string, mongoose.Types.ObjectId[]>();
     expiredSubscriptions.forEach((subscription) => {
+      if (!subscription.user_id || !subscription.subscription_id) {
+        console.log(subscription);
+        logger.warn(
+          `Skipping expired subscription ${subscription._id} due to missing populated user or subscription data.`
+        );
+        return; // Skip this subscription if any required data is missing
+      }
+
       const userId = (subscription.user_id as IUser)._id.toString();
       const subscriptionId = (
         subscription.subscription_id as unknown as ISubscription
