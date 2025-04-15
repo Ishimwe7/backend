@@ -107,6 +107,7 @@ export const handlePaymentCallback = async (
     const type = parts[1];
     const subscriptionId = parts[2]?.replace("s", "");
     const language = parts[3] || "en";
+    let messagebody = "y'ifatabuguzi";
     // Find the user and subscription
     const user = await User.findOne({ email });
 
@@ -150,16 +151,16 @@ export const handlePaymentCallback = async (
         });
         smsService.sendSMS(
           phoneNumber,
-          `Hello ${customer.fullName} Murakoze gufata ifatabuguzi ku rubuga umuhanda!`
+          `Muraho neza ${customer.fullName} kwishyura amafaranga ${messagebody} ku rubuga umuhanda byagenze neza!`
         );
         if (email) {
           emailService.sendEmail({
             to: email,
             subject: "Kugura Ifatabuguzi",
-            html: `Hello ${customer.fullName} Murakoze gufata ifatabuguzi ku rubuga umuhanda. Ubu mushobora kwinjira kurubuga mugakora isuzuma ! !`,
+            html: `Muraho neza ${customer.fullName} kwishyura amafaranga ${messagebody} ku rubuga umuhanda byagenze neza. Ubu mushobora <br/><a href="${process.env.FRONTEND_URL}/signin">kwinjira </a><br/> kurubuga mu kiga cyangwa mugakora isuzuma ! !`,
           });
         }
-        res.status(201).json(savedSubscription);
+        res.status(200).json(savedSubscription);
         return;
       } else {
         if (type === "gaz") {
@@ -170,21 +171,39 @@ export const handlePaymentCallback = async (
             type: "gazette",
             data: { canDownload: true },
           });
+          messagebody = "y'igazeti";
+          smsService.sendSMS(
+            phoneNumber,
+            `Muraho neza ${customer.fullName} kwishyura amafaranga ${messagebody} ku rubuga umuhanda byagenze neza.Ubu mushobora kwinjira kurubuga mukamanura i gazeti yanyu!`
+          );
+          if (email) {
+            emailService.sendEmail({
+              to: email,
+              subject: "Kugura Ifatabuguzi",
+              html: `Muraho neza ${customer.fullName} kwishyura amafaranga ${messagebody} ku rubuga umuhanda byagenze neza. Ubu mushobora kwinjira kurubuga mukamanura i gazeti yanyu!`,
+            });
+          }
         }
+        res
+          .status(200)
+          .json({ message: "Gazette Payment was done successfully" });
+        return;
       }
     } else {
       smsService.sendSMS(
         phoneNumber,
-        `Hello ${customer.fullName} Kugura ifatabuguzi ku rubuga umuhanda ntibibashije gukunda! Mushobora kongera mugerageza hano: ${paymentLinkUrl}`
+        `Muraho neza ${customer.fullName} Kugura ifatabuguzi ku rubuga umuhanda ntibibashije gukunda! Mushobora kongera mukagerageza hano: ${paymentLinkUrl}`
       );
       if (email) {
         emailService.sendEmail({
           to: email,
           subject: "Kugura Ifatabuguzi",
-          html: `Hello ${customer.fullName}, Kugura ifatabuguzi ntibibashije gukunda. <br/>Mushobora kugerageza kongera kuri iri huzwa: <a href="${paymentLinkUrl}">${paymentLinkUrl}</a><br/>Cyangwa mutwandikire tubafashe.`,
+          html: `Muraho neza ${customer.fullName}, Kugura ifatabuguzi ntibibashije gukunda. <br/>Mushobora kugerageza kongera kuri iri huzwa: <a href="${paymentLinkUrl}">${paymentLinkUrl}</a><br/>Cyangwa mutwandikire tubafashe.`,
         });
       }
       console.log(`❌ Payment failed for Transaction ${transactionId}`);
+      res.status(500).json({ message: "Gazette Payment was failed" });
+      return;
     }
   } catch (error: any) {
     console.error("❌ Error processing payment callback:", error);
